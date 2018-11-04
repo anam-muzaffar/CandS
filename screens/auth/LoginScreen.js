@@ -1,6 +1,14 @@
 
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Alert, ImageBackground,KeyboardAvoidingView  } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  Alert,
+  ImageBackground,
+  KeyboardAvoidingView  } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import * as firebase from 'firebase';
 
@@ -13,12 +21,10 @@ constructor(props) {
         password: "",
     };
 }
-
 onLoginPress = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => { }, (error) => { Alert.alert(error.message); });
 }
-
 onCreateAccountPress = () => {
     var navActions = NavigationActions.reset({
         index: 0,
@@ -26,7 +32,6 @@ onCreateAccountPress = () => {
     });
     this.props.navigation.dispatch(navActions);
 }
-
 onForgotPasswordPress = () => {
     var navActions = NavigationActions.reset({
         index: 0,
@@ -40,11 +45,12 @@ render() {
         <View style={styles.loginpage}>
         <KeyboardAvoidingView
           style={styles.container}
-          behavior="height"
+          behavior="padding"
           >
           <ImageBackground source={require("../../assets/images/bckgrnd.png")} style={{width: '100%', height: '100%'}}>
 
-            <Text style ={styles.title}>Crafting & Stitching</Text>
+            <Text style ={styles.title}>CandS</Text>
+            <Text style = {styles.subheading}> Crafting and Stitching</Text>
 
             <View style={{paddingTop:50}} />
 
@@ -117,10 +123,17 @@ title: {
  textAlign:"center",
 },
 
+subheading: {
+ color: "yellow",
+ fontSize:20,
+ textAlign:"center",
+},
+
 inputbox:{
   width: 400,
   height: 50,
-  borderWidth: 0,
+  borderWidth: 2,
+  borderColor: 'gray',
   color: "#c4c633",
   fontSize: 18
 },
